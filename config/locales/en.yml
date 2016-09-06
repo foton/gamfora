@@ -1,0 +1,11 @@
+en:
+  game:
+    views:
+      index:
+        header: "List of games"
+      show:
+        header: "Game: %{name}"
+      new:
+        header: "New Game"
+      edit:
+        header: "Edit game: %{name}"
