@@ -11,6 +11,25 @@ require "rails/test_help"
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 
 
+
+
+#Create  APP (not Engine) fixtures
+::User.delete_all
+::User.create!(name: "John Doe", username: "game_owner")
+::User.create!(name: "Conan O'Brian", username: "player1")
+::User.create!(name: "John Carmack",  username: "player2")
+::User.create!(name: "Bugsy", username: "player3")
+
+def users(username)
+  unless defined?(@users)
+    @users={}
+    User.all.each do |u|
+      @users[u.username.to_sym]=u
+    end  
+  end 
+  @users[username.to_sym]
+end  
+
 # Load fixtures from the engine
 if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.fixture_path = File.expand_path("../fixtures", __FILE__)

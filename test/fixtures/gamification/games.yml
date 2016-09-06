@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% game_owner=::User.find_by_username("game_owner") %>
 
 got:
   name: Game of Thrones
+  owner_id: <%= game_owner.id %>
 
 dn3d:
   name: Duke Nukem 3D
+  owner_id: <%= game_owner.id %>

@@ -3,6 +3,7 @@ require_dependency "gamification/application_controller"
 module Gamification
   class GamesController < ApplicationController
     before_action :set_game, only: [:show, :edit, :update, :destroy]
+    before_action :kick_off_no_owners, only: [:show, :edit, :update, :destroy]
 
     # GET /games
     def index
@@ -25,6 +26,7 @@ module Gamification
     # POST /games
     def create
       @game = Game.new(game_params)
+      @game.owner=current_user
 
       if @game.save
         redirect_to @game, notice: 'Game was successfully created.'
@@ -58,5 +60,12 @@ module Gamification
       def game_params
         params.require(:game).permit(:name)
       end
+
+      def kick_off_no_owners
+        if current_user != @game.owner
+          flash[:error]="No such game founded betwwen your games!"
+          redirect_to(games_url) 
+        end  
+      end  
   end
 end
