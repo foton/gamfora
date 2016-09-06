@@ -1,8 +1,18 @@
 en:
+  helpers:
+    submit:
+      game:
+        create: "Create Game"
+        update: "Update"
+  buttons:
+    edit: "Edit"
+    back: "Back"
+    show: "Show"
   game:
     views:
       index:
         header: "List of games"
+        button_new: "Create new Game"
       show:
         header: "Game: %{name}"
       new:

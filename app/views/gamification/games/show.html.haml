@@ -1,0 +1,5 @@
+%p#notice= notice
+%h1= t("game.views.show.header", name: @game.name)
+= link_to t("buttons.edit"), edit_game_path(@game)
+|
+= link_to t("buttons.back"), games_path

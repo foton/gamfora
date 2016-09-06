@@ -17,6 +17,8 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails", "~> 5.0.0", ">= 5.0.0.1"
+  #s.add_dependency "haml" #no need for haml-rails in production
+  s.add_dependency "haml-rails"  #'require "haml"' have to be added to lib/gamification.rb to properly find and render haml views
 
 #  s.add_development_dependency "bundler", "~> 1.10"
 #  s.add_development_dependency "rake", "~> 10.0"
@@ -25,6 +27,7 @@ Gem::Specification.new do |s|
   #spec.add_development_dependency "minitest-reporters" 
   s.add_development_dependency "pry-byebug" 
   s.add_development_dependency "nested_scaffold"
+  #s.add_development_dependency "haml-rails"
 end
 
 
