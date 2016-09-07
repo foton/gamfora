@@ -3,7 +3,9 @@ require "gamification/engine"
 require "haml"
 module Gamification
   mattr_accessor :game_owner_class
+  mattr_accessor :game_owner_name_attribute
   mattr_accessor :player_class
+  mattr_accessor :player_name_attribute
 
   def self.game_owner_class
     @@game_owner_class.constantize

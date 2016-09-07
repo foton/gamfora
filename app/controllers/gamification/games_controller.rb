@@ -3,7 +3,8 @@ require_dependency "gamification/application_controller"
 module Gamification
   class GamesController < ApplicationController
     before_action :set_game, only: [:show, :edit, :update, :destroy]
-    before_action :kick_off_no_owners, only: [:show, :edit, :update, :destroy]
+    before_action :kick_off_no_owners, only: [:edit, :update, :destroy]
+    before_action :kick_off_no_owners_or_players, only: [:show]
 
     # GET /games
     def index
@@ -63,7 +64,14 @@ module Gamification
 
       def kick_off_no_owners
         if current_user != @game.owner
-          flash[:error]="No such game founded betwwen your games!"
+          flash[:error]="No such game founded between your games!"
+          redirect_to(games_url) 
+        end  
+      end  
+
+       def kick_off_no_owners_or_players
+        unless (@game.players+[@game.owner]).include?(current_user)
+          flash[:error]="No such game founded between your games!"
           redirect_to(games_url) 
         end  
       end  

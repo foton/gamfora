@@ -16,9 +16,9 @@ Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 #Create  APP (not Engine) fixtures
 ::User.delete_all
 ::User.create!(name: "John Doe", username: "game_owner")
-::User.create!(name: "Conan O'Brian", username: "player1")
-::User.create!(name: "John Carmack",  username: "player2")
-::User.create!(name: "Bugsy", username: "player3")
+::User.create!(name: "Conan O'Brian", username: "user1")
+::User.create!(name: "John Carmack",  username: "user2")
+::User.create!(name: "Bugsy", username: "user3")
 
 def users(username)
   unless defined?(@users)
