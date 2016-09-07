@@ -69,7 +69,7 @@ module Gamification
         end  
       end  
 
-       def kick_off_no_owners_or_players
+      def kick_off_no_owners_or_players
         unless (@game.players+[@game.owner]).include?(current_user)
           flash[:error]="No such game founded between your games!"
           redirect_to(games_url) 

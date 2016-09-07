@@ -2,61 +2,72 @@ require_dependency "gamification/application_controller"
 
 module Gamification
   class PlayersController < ApplicationController
+    before_action :set_game
     before_action :set_player, only: [:show, :edit, :update, :destroy]
 
-    # GET /players
+    # GET games/1/players
     def index
-      @players = Player.all
+      @players = @game.players
     end
 
-    # GET /players/1
+    # GET games/1/players/1
     def show
     end
 
-    # GET /players/new
+    # GET games/1/players/new
     def new
-      @player = Player.new
+      @player = @game.players.build
     end
 
-    # GET /players/1/edit
+    # GET games/1/players/1/edit
     def edit
     end
 
-    # POST /players
+    # POST games/1/players
     def create
-      @player = Player.new(player_params)
+      @player = @game.players.build(player_params)
 
       if @player.save
-        redirect_to @player, notice: 'Player was successfully created.'
+        redirect_to(game_player_url(@player.game, @player), notice: 'Player was successfully created.')
       else
-        render :new
+        render action: 'new'
       end
     end
 
-    # PATCH/PUT /players/1
+    # PATCH/PUT games/1/players/1
     def update
-      if @player.update(player_params)
-        redirect_to @player, notice: 'Player was successfully updated.'
+      if @player.update_attributes(player_params)
+        @player.reload
+        redirect_to(game_player_url(@player.game, @player), notice: 'Player was successfully updated.')
       else
-        render :edit
+        render action: 'edit'
       end
     end
 
-    # DELETE /players/1
+    # DELETE games/1/players/1
     def destroy
       @player.destroy
-      redirect_to players_url, notice: 'Player was successfully destroyed.'
+
+      redirect_to game_players_url(@game), notice: 'Player was successfully destroyed.'
     end
 
     private
       # Use callbacks to share common setup or constraints between actions.
+      def set_game
+        @game = Game.find(params[:game_id])
+      end
+
       def set_player
-        @player = Player.find(params[:id])
+        @player = @game.players.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
       def player_params
         params.require(:player).permit(:user_id, :game_id)
       end
+
+
+
+
   end
 end

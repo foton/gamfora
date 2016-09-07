@@ -16,9 +16,9 @@
       <tr>
         <td><%= player.user_id %></td>
         <td><%= player.game_id %></td>
-        <td><%= link_to 'Show', player %></td>
-        <td><%= link_to 'Edit', edit_player_path(player) %></td>
-        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [player.game, player] %></td>
+        <td><%= link_to 'Edit', edit_game_player_path(player.game, player) %></td>
+        <td><%= link_to 'Destroy', [player.game, player], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Player', new_player_path %>
+<%= link_to 'New Player', new_game_player_path(params[:game_id]) %>

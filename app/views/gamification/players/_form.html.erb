@@ -1,4 +1,4 @@
-<%= form_for(player) do |f| %>
+<%= form_for([player.game, player]) do |f| %>
   <% if player.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
@@ -25,3 +25,6 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+
+
