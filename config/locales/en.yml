@@ -1,21 +1,35 @@
 en:
-  helpers:
-    submit:
-      game:
-        create: "Create Game"
-        update: "Update"
-  buttons:
-    edit: "Edit"
-    back: "Back"
-    show: "Show"
-  game:
-    views:
-      index:
-        header: "List of games"
-        button_new: "Create new Game"
-      show:
-        header: "Game: %{name}"
-      new:
-        header: "New Game"
-      edit:
-        header: "Edit game: %{name}"
+  activerecord:
+    attributes:
+      gamfora/game:
+        name: "Name"
+        owner: "Owner"
+
+    errors:
+      models:
+        gamfora/game:
+          attributes:
+            owner:
+              required: "Reg"
+
+  gamfora:
+    helpers:
+      submit:
+        game:
+          create: "Create Game"
+          update: "Update"
+    buttons:
+      edit: "Edit"
+      back: "Back"
+      show: "Show"
+    game:
+      views:
+        index:
+          header: "List of games"
+          button_new: "Create new Game"
+        show:
+          header: "Game: %{name}"
+        new:
+          header: "New Game"
+        edit:
+          header: "Edit game: %{name}"

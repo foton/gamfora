@@ -12,21 +12,21 @@
 
 ActiveRecord::Schema.define(version: 20160907083352) do
 
-  create_table "gamification_games", force: :cascade do |t|
+  create_table "gamfora_games", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "owner_id"
-    t.index ["owner_id"], name: "index_gamification_games_on_owner_id"
+    t.index ["owner_id"], name: "index_gamfora_games_on_owner_id"
   end
 
-  create_table "gamification_players", force: :cascade do |t|
+  create_table "gamfora_players", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_gamification_players_on_game_id"
-    t.index ["user_id"], name: "index_gamification_players_on_user_id"
+    t.index ["game_id"], name: "index_gamfora_players_on_game_id"
+    t.index ["user_id"], name: "index_gamfora_players_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

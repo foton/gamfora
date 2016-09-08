@@ -1,6 +1,6 @@
 require 'test_helper'
 
-module Gamification
+module Gamfora
   class GameControllerTest < ActionDispatch::IntegrationTest
     include Engine.routes.url_helpers
    

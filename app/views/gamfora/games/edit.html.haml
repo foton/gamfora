@@ -1,0 +1,5 @@
+%h1= t("gamfora.game.views.edit.header", name: @game.name)
+= render 'form', game: @game
+= link_to t("buttons.show"), @game
+|
+= link_to t("buttons.back"), games_path

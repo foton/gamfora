@@ -1,0 +1,7 @@
+= form_for(game) do |f|
+  = error_messages_for(game)
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions
+    = f.submit

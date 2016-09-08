@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount Gamification::Engine => "/gamification"
+  mount Gamfora::Engine => "/gamfora"
 end

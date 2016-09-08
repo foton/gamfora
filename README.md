@@ -1,16 +1,34 @@
-# Gamification
+# Gamfora - Gamfora for anyone/anything
 Rails engine in form of gem for including gamification into your Rails app.
 Game admin creates game(s), add metrics, actions, players and teams to them. Than any player can play an action and get rewards to his/her scores.
 And of course any player can display leaderboards for any metric (for players or teams). 
 
 ## Usage
-How to use my plugin.
+Work in progres!
+
+Typical usage will be
+- instal gem
+- setup config/initializer
+```ruby
+Gamfora.game_owner_class = "User"
+Gamfora.game_owner_name_attribute = "username"
+Gamfora.player_class = "User"
+Gamfora.player_name_attribute = "name"
+```
+- use 
+```ruby
+game=Gamfora::Game.find_by_name("my_game")
+game.play_action(:issue_commented, current_user)
+game.player_for(current_user).scores
+game.player_leaderboards.find(:tolar_metrics)
+```
+
 
 ## Installation
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'gamification'
+gem 'gamfora'
 ```
 
 And then execute:
@@ -20,7 +38,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install gamification
+$ gem install gamfora
 ```
 
 ## Contributing

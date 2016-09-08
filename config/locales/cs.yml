@@ -1,0 +1,37 @@
+cs:
+  activerecord:
+    attributes:
+      gamfora/game:
+        name: "Název"
+        owner: "Vlastník hry"
+
+    errors:
+      models:
+        gamfora/game:
+          attributes:
+            owner:
+              required: "Reg"
+ 
+  gamfora:
+    helpers:
+      submit:
+        game:
+          create: "Vytvořit"
+          update: "Uložit"
+    buttons:
+      edit: "Editace"
+      back: "Zpět"
+      show: "Detail"
+
+    game:
+      owner:
+      views:
+        index:
+          header: "Seznam her"
+          button_new: "Přidat Hru"
+        show:
+          header: "Hra: %{name}"
+        new:
+          header: "Nová Hra"
+        edit:
+          header: "Úprava hry: %{name}"
