@@ -52,6 +52,21 @@ module Gamfora
       assert_equal(0,Gamfora::Game.played_by(users(:game_owner)).count ) 
     end  
 
+    test "have players" do
+      game=gamfora_games(:got)
+      assert_equal 3, game.players.count
+    end  
+   
+    test "can find it's users" do
+      game=gamfora_games(:got)
+      assert_equal(1+3, game.users.size)
+    end  
+
+
+    test "can play action on behalf of user" do
+      skip #gamfora_games(:got).play_action(:wedding_ruined, users(:user1))
+    end  
+
 
   end
 end

@@ -1,0 +1,10 @@
+= form_for([player.game, player]) do |f|
+  = error_messages_for(player)
+  .field
+    = f.label :user_id
+    = f.number_field :user_id
+  .field
+    = f.label :game_id
+    = f.number_field :game_id
+  .actions
+    = f.submit

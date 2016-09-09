@@ -13,6 +13,7 @@ en:
               required: "Reg"
 
   gamfora:
+    not_your_game: "No such game founded between your games!"
     helpers:
       submit:
         game:
@@ -22,6 +23,7 @@ en:
       edit: "Edit"
       back: "Back"
       show: "Show"
+
     game:
       views:
         index:
@@ -31,5 +33,11 @@ en:
           header: "Game: %{name}"
         new:
           header: "New Game"
+        create:
+          success_message: "Game '%{name}' was successfully created."
         edit:
           header: "Edit game: %{name}"
+        update:
+          success_message: "Game '%{name}' was successfully updated."
+        destroy:
+          success_message: "Game '%{name}' was successfully destroyed."

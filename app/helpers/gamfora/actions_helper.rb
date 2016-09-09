@@ -1,5 +1,4 @@
 module Gamfora
-  module GamesHelper
-
+  module ActionsHelper
   end
 end

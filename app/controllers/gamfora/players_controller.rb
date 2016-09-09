@@ -10,17 +10,13 @@ module Gamfora
       @players = @game.players
     end
 
-    # GET games/1/players/1
+    # GET games/1/players/new
     def show
-    end
+    end  
 
     # GET games/1/players/new
     def new
       @player = @game.players.build
-    end
-
-    # GET games/1/players/1/edit
-    def edit
     end
 
     # POST games/1/players
@@ -28,22 +24,12 @@ module Gamfora
       @player = @game.players.build(player_params)
 
       if @player.save
-        redirect_to(game_player_url(@player.game, @player), notice: 'Player was successfully created.')
+        redirect_to(game_players_url(@player.game, anchor: "player_#{@player.id}"), notice: 'Player was successfully created.')
       else
         render action: 'new'
       end
     end
-
-    # PATCH/PUT games/1/players/1
-    def update
-      if @player.update_attributes(player_params)
-        @player.reload
-        redirect_to(game_player_url(@player.game, @player), notice: 'Player was successfully updated.')
-      else
-        render action: 'edit'
-      end
-    end
-
+  
     # DELETE games/1/players/1
     def destroy
       @player.destroy
@@ -52,11 +38,6 @@ module Gamfora
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_game
-        @game = Game.find(params[:game_id])
-      end
-
       def set_player
         @player = @game.players.find(params[:id])
       end
@@ -65,9 +46,6 @@ module Gamfora
       def player_params
         params.require(:player).permit(:user_id, :game_id)
       end
-
-
-
 
   end
 end

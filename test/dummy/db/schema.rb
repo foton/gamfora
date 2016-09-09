@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907083352) do
+ActiveRecord::Schema.define(version: 20160908135316) do
+
+  create_table "gamfora_actions", force: :cascade do |t|
+    t.string   "name"
+    t.string   "key"
+    t.integer  "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_gamfora_actions_on_game_id"
+  end
 
   create_table "gamfora_games", force: :cascade do |t|
     t.string   "name"

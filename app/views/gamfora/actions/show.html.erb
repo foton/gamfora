@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @gaction.name %>
+</p>
+
+<p>
+  <b>Game:</b>
+  <%= @gaction.game %>
+</p>
+
+
+<%= link_to 'Edit', edit_game_gaction_path(@gaction.game, @gaction) %> |
+<%= link_to 'Back', game_gactions_path(@gaction.game) %>

@@ -1,0 +1,3 @@
+%h1= t("gamfora.player.views.new.header")
+= render 'form', player: @player
+= link_to t("buttons.back"), game_players_path(@player.game)

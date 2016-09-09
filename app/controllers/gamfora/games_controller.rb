@@ -8,7 +8,7 @@ module Gamfora
 
     # GET /games
     def index
-      @games = Game.all
+      @games = Game.owned_by(current_user)
     end
 
     # GET /games/1
@@ -30,7 +30,7 @@ module Gamfora
       @game.owner=current_user
 
       if @game.save
-        redirect_to @game, notice: 'Game was successfully created.'
+        redirect_to @game, notice: t('gamfora.game.views.create.success_message', name: @game.name)
       else
         render :new
       end
@@ -39,7 +39,7 @@ module Gamfora
     # PATCH/PUT /games/1
     def update
       if @game.update(game_params)
-        redirect_to @game, notice: 'Game was successfully updated.'
+        redirect_to @game, notice: t('gamfora.game.views.update.success_message', name: @game.name)
       else
         render :edit
       end
@@ -48,7 +48,7 @@ module Gamfora
     # DELETE /games/1
     def destroy
       @game.destroy
-      redirect_to games_url, notice: 'Game was successfully destroyed.'
+      redirect_to games_url, notice: t('gamfora.game.views.destroy.success_message', name: @game.name)
     end
 
     private
@@ -64,16 +64,10 @@ module Gamfora
 
       def kick_off_no_owners
         if current_user != @game.owner
-          flash[:error]="No such game founded between your games!"
+          flash[:error]=t("gamfora.not_your_game")
           redirect_to(games_url) 
         end  
       end  
 
-      def kick_off_no_owners_or_players
-        unless (@game.players+[@game.owner]).include?(current_user)
-          flash[:error]="No such game founded between your games!"
-          redirect_to(games_url) 
-        end  
-      end  
   end
 end

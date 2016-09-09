@@ -1,0 +1,14 @@
+%table#game_players
+  %thead
+    %tr
+      %th Name
+      %th{:colspan => "2"}
+      - if current_user_owner_of_game?(@game)
+        = link_to t("gamfora.player.views.index.button_new"),  new_game_player_path(@game)
+  %tbody
+    - players.each do |player|
+      %tr{:id => "player_#{player.id}"}
+        %td= player.name
+        %td.show= link_to t("gamfora.buttons.show"), [@game, player]
+        - if current_user_owner_of_game?(@game)
+          %td.destroy= link_to t("gamfora.player.views.destroy_button"), [@game, player], method: :delete, data: { confirm: t("gamfora.player.views.destroy.question", name: player.name, game_name: @game.name) }

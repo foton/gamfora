@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   mattr_accessor :current_user
  
+  helper_method :current_user
   def current_user #instance method to acces class variable
     @@current_user 
   end  

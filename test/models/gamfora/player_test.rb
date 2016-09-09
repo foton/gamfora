@@ -36,5 +36,12 @@ module Gamfora
       skip
     end  
 
+    test "can find players for user" do
+      assert_equal(1,Gamfora::Player.all_for(users(:user1)).count )
+      assert_equal(2,Gamfora::Player.all_for(users(:user2)).count ) 
+      assert_equal(2,Gamfora::Player.all_for(users(:user3)).count ) 
+      assert_equal(0,Gamfora::Player.all_for(users(:game_owner)).count ) 
+    end 
+
   end
 end

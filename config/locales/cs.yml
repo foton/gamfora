@@ -13,6 +13,7 @@ cs:
               required: "Reg"
  
   gamfora:
+    not_your_game: "Takovou hru nemáte v portfoliu!"
     helpers:
       submit:
         game:
@@ -22,16 +23,41 @@ cs:
       edit: "Editace"
       back: "Zpět"
       show: "Detail"
+      destroy: "Zrušit"
 
     game:
-      owner:
       views:
         index:
           header: "Seznam her"
           button_new: "Přidat Hru"
         show:
           header: "Hra: %{name}"
+          players:
+            header: "Hráči"
+          actions:
+            header: "Akce"
         new:
           header: "Nová Hra"
+        create:
+          success_message: "Hra '%{name}' byla úspěšně vytvořena."
         edit:
           header: "Úprava hry: %{name}"
+        update:
+          success_message: "Hra '%{name}' byla úspěšně změněna."
+        destroy:
+          success_message: "Hra '%{name}' byla úspěšně zrušena."
+    player:
+      views:
+        destroy_button: "Vyřadit ze hry"
+        index:
+          header: "Seznam hráčů hry '%{game_name}'"
+          button_new: "Přidat hráče"
+        show:
+          header: "Hráč: %{name}"
+        new:
+          header: "Nový hráč do hry '%{game_name}'"
+        create:
+          success_message: "Hráč '%{name}' byl úspěšně přidán do hry '%{game_name}'."
+        destroy:
+          question: "Opravdu vyřadit hráče '%{name}' ze hry '%{game_name}'"
+          success_message: "Hráč '%{name}' byl úspěšně vyřazen ze hry '%{game_name}'."

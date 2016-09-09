@@ -11,6 +11,10 @@ module Gamfora
       owner.send(Gamfora.game_owner_name_attribute)
     end 
 
+    def users
+      ([owner]+players.collect {|p| p.user})
+    end  
+
     scope :owned_by, ->(owner) { where(owner_id: owner.id)}
     scope :played_by, ->(user) { where(id: (Gamfora::Player.all_for(user).pluck(:game_id)) )}
 

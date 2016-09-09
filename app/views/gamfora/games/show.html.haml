@@ -1,5 +1,7 @@
-%p#notice= notice
 %h1= t("gamfora.game.views.show.header", name: @game.name)
 = link_to t("gamfora.buttons.edit"), edit_game_path(@game)
 |
 = link_to t("gamfora.buttons.back"), games_path
+
+%h2= t("gamfora.game.views.show.players.header")
+= render 'gamfora/players/list', players: @game.players
