@@ -64,8 +64,7 @@ module Gamfora
 
       def kick_off_no_owners
         if current_user != @game.owner
-          flash[:error]=t("gamfora.not_your_game")
-          redirect_to(games_url) 
+          redirect_to games_url, alert: t("gamfora.not_your_game")
         end  
       end  
 

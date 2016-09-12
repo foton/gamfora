@@ -128,13 +128,13 @@ module Gamfora
       end
     end
 
-    test "should not show game which is not owned by current_user" do
-      ::ApplicationController.current_user=users(:player1)
+    test "should not show game which is not owned or played by current_user" do
+      ::ApplicationController.current_user=users(:user1)
       
-      get game_url(@game)
+      get game_url(gamfora_games(:dn3d))
 
       assert_redirected_to games_url
-      assert(flash[:error].present?)
+      assert_equal "Takovou hru nemáte v portfoliu!", flash[:alert]
     end
 
     test "should get edit" do
@@ -144,25 +144,42 @@ module Gamfora
     end
 
     test "should not get edit for game which is not owned by current_user" do
-      ::ApplicationController.current_user=users(:player1)
+      ::ApplicationController.current_user=users(:user1)
       get edit_game_url(@game)
       
       assert_redirected_to games_url
-      assert(flash[:error].present?)
+      assert_equal "Takovou hru nemáte v portfoliu!", flash[:alert]
     end
 
     test "should update game" do
-      patch game_url(@game), params: { game: { name: @game.name } }
+      patch game_url(@game), params: { game: { name: "new_name" } }
       assert_redirected_to game_url(@game)
+      @game.reload
+      assert_equal "new_name", @game.name
+    end
+
+    test "should not update game if name is blank" do
+      patch game_url(@game), params: { game: { name: "" } }
+      
+      assert_response :success      
+      #test for displaying error messages
+      assert_select "#error_messages", "Název je povinná položka"
+      assert_select ".field_with_errors #game_name"
+
     end
 
     test "should not update game which is not owned by current_user" do
-      ::ApplicationController.current_user=users(:player2)
-
-      patch game_url(@game), params: { game: { name: @game.name } }
+      ::ApplicationController.current_user=users(:user2)
       
+      patch game_url(@game), params: { game: { name: @game.name } }
+      @game.reload
+
       assert_redirected_to games_url
-      assert(flash[:error].present?)
+      assert_equal "Takovou hru nemáte v portfoliu!", flash[:alert]
+
+      #test for displaying flash
+      follow_redirect!
+      assert_select "#flashes .alert", "Takovou hru nemáte v portfoliu!"
     end
 
     test "should destroy game" do
@@ -174,14 +191,14 @@ module Gamfora
     end
 
     test "should not destroy game which is not owned by current_user" do
-      ::ApplicationController.current_user=users(:player2)
+      ::ApplicationController.current_user=users(:user2)
       
       assert_no_difference('Game.count') do
         delete game_url(@game)
       end
 
       assert_redirected_to games_url
-      assert(flash[:error].present?)
+      assert_equal "Takovou hru nemáte v portfoliu!", flash[:alert]
     end
 
   end

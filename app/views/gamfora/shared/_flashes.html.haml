@@ -1,0 +1,4 @@
+%div#flashes
+  - flash.keys.each do |key|
+    %p{class: "#{key}"}=flash[key].to_s
+

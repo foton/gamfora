@@ -8,6 +8,6 @@ module Gamfora
       game.owner == current_user
     end 
 
-  
+   
   end
 end

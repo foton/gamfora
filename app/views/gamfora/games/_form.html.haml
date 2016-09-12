@@ -1,5 +1,5 @@
 = form_for(game) do |f|
-  = error_messages_for(game)
+  = render 'gamfora/shared/error_messages', obj: game
   .field
     = f.label :name
     = f.text_field :name

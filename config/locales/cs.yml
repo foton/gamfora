@@ -45,6 +45,7 @@ cs:
         update:
           success_message: "Hra '%{name}' byla úspěšně změněna."
         destroy:
+          question: "Opravdu zrušit hru '%{name}'?"
           success_message: "Hra '%{name}' byla úspěšně zrušena."
     player:
       views:
@@ -59,5 +60,23 @@ cs:
         create:
           success_message: "Hráč '%{name}' byl úspěšně přidán do hry '%{game_name}'."
         destroy:
-          question: "Opravdu vyřadit hráče '%{name}' ze hry '%{game_name}'"
+          question: "Opravdu vyřadit hráče '%{name}' ze hry '%{game_name}'?"
           success_message: "Hráč '%{name}' byl úspěšně vyřazen ze hry '%{game_name}'."
+    metric:
+      views:
+        index:
+          header: "Seznam metrik"
+          button_new: "Přidat novou"
+        show:
+          header: "Metrika: %{name}"
+        new:
+          header: "Nová metrika"
+        create:
+          success_message: "Metrika '%{name}' byla úspěšně vytvořena."
+        edit:
+          header: "Úprava metriky: %{name}"
+        update:
+          success_message: "Metrika '%{name}' byla úspěšně změněna."
+        destroy:
+          question: "Opravdu zrušit metriku '%{name}' (a s ní i navázené události, odměny a žebříčky?"
+          success_message: "Metrika '%{name}' byla úspěšně zrušena."

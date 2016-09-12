@@ -1,0 +1,5 @@
+%div#error_messages
+  %ul
+    - obj.errors.full_messages.each do |msg|
+      %li.error_message=msg
+
