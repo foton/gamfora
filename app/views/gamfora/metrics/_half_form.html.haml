@@ -1,0 +1,17 @@
+.field
+  = f.label :name
+  = f.text_field :name
+
+%div#values    
+  .field
+    = f.label :start_value
+    = f.text_field :start_value
+  .field
+    = f.label :min_value
+    = f.text_field :min_value
+  .field
+    = f.label :max_value
+    = f.text_field :max_value
+
+.actions
+  = f.submit

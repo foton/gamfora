@@ -1,2 +1,2 @@
-%h1= t("gamfora.player.views.show.header", name: @player.name)
+%h1= t("gamfora.player.views.show.header", name: @player.name, game_name: @player.game.name)
 = link_to t("gamfora.buttons.back"), game_players_path(@game)

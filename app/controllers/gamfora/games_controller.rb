@@ -8,7 +8,7 @@ module Gamfora
 
     # GET /games
     def index
-      @games = Game.owned_by(current_user)
+      @games = Game.owned_by(current_user) + Game.played_by(current_user)
     end
 
     # GET /games/1
@@ -61,12 +61,6 @@ module Gamfora
       def game_params
         params.require(:game).permit(:name)
       end
-
-      def kick_off_no_owners
-        if current_user != @game.owner
-          redirect_to games_url, alert: t("gamfora.not_your_game")
-        end  
-      end  
 
   end
 end

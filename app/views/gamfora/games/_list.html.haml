@@ -1,0 +1,15 @@
+%table#games
+  %thead
+    %tr
+      %th=Gamfora::Game.human_attribute_name(:name)
+      %th{:colspan => "3"}
+        = link_to t("gamfora.game.views.index.button_new"),  new_game_path()
+  %tbody
+    - games.each do |game|
+      %tr{:id => "game_#{game.id}"}
+        %td= game.name
+        %td.show= link_to t("gamfora.buttons.show"), game
+        - if current_user_owner_of_game?(game)
+          %td.edit= link_to t("gamfora.buttons.edit"), edit_game_path(game)
+          %td.destroy= link_to t("gamfora.buttons.destroy"), game, method: :delete, data: { confirm: t("gamfora.game.views.destroy.question", name: game.name) }
+      

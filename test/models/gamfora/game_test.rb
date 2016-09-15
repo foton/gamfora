@@ -62,9 +62,12 @@ module Gamfora
       assert_equal(1+3, game.users.size)
     end  
 
-
     test "can play action on behalf of user" do
       skip #gamfora_games(:got).play_action(:wedding_ruined, users(:user1))
+    end  
+
+    test "game destroy, delete also nested resources" do
+      skip #delete players, action, metrics, events? .....
     end  
 
 

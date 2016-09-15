@@ -10,13 +10,16 @@ cs:
         gamfora/game:
           attributes:
             owner:
-              required: "Reg"
  
   gamfora:
     not_your_game: "Takovou hru nemáte v portfoliu!"
+    not_your_own_game: "Takovou hru nemáte ve vlastnickém portfoliu!"
     helpers:
       submit:
         game:
+          create: "Vytvořit"
+          update: "Uložit"
+        metric:
           create: "Vytvořit"
           update: "Uložit"
     buttons:
@@ -48,13 +51,17 @@ cs:
           question: "Opravdu zrušit hru '%{name}'?"
           success_message: "Hra '%{name}' byla úspěšně zrušena."
     player:
+      errors:
+        user_is_already_player_in_this_game: "Uživatel již je hráčem této hry!"
+      virtual_attributes:
+        name: "Jméno uživatele"
       views:
         destroy_button: "Vyřadit ze hry"
         index:
           header: "Seznam hráčů hry '%{game_name}'"
           button_new: "Přidat hráče"
         show:
-          header: "Hráč: %{name}"
+          header: "Hráč '%{name}' ve hře '%{game_name}'"
         new:
           header: "Nový hráč do hry '%{game_name}'"
         create:
@@ -63,20 +70,25 @@ cs:
           question: "Opravdu vyřadit hráče '%{name}' ze hry '%{game_name}'?"
           success_message: "Hráč '%{name}' byl úspěšně vyřazen ze hry '%{game_name}'."
     metric:
+      point:
+        errors:
+          start_value_is_bellow_min: "Hodnota START je menší než hodnota MIN"
+          start_value_is_above_max: "Hodnota START je větší než hodnota MAX"
+          start_value_is_not_present: "Hodnota START musí být celé číslo"
       views:
         index:
-          header: "Seznam metrik"
+          header: "Seznam metrik hry '%{game_name}'"
           button_new: "Přidat novou"
         show:
-          header: "Metrika: %{name}"
+          header: "Metrika '%{name}' ve hře '%{game_name}'"
         new:
-          header: "Nová metrika"
+          header: "Nová metrika do hry '%{game_name}'"
         create:
-          success_message: "Metrika '%{name}' byla úspěšně vytvořena."
+          success_message: "Metrika '%{name}' byla úspěšně přidána do hry '%{game_name}'."
         edit:
-          header: "Úprava metriky: %{name}"
+          header: "Úprava metriky '%{name}' ve hře '%{game_name}'"
         update:
-          success_message: "Metrika '%{name}' byla úspěšně změněna."
+          success_message: "Metrika '%{name}' ve hře '%{game_name}' byla úspěšně změněna."
         destroy:
           question: "Opravdu zrušit metriku '%{name}' (a s ní i navázené události, odměny a žebříčky?"
-          success_message: "Metrika '%{name}' byla úspěšně zrušena."
+          success_message: "Metrika '%{name}' byla úspěšně smazána ze hry '%{game_name}'."

@@ -10,10 +10,10 @@ en:
         gamfora/game:
           attributes:
             owner:
-              required: "Reg"
 
   gamfora:
     not_your_game: "No such game founded between your games!"
+    not_your_own_game: "No such game founded between games owned by you!"
     helpers:
       submit:
         game:

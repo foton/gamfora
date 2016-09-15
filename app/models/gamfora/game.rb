@@ -2,6 +2,7 @@ module Gamfora
   class Game < ApplicationRecord
     belongs_to :owner, class_name: Gamfora.game_owner_class.to_s
     has_many :players, dependent: :destroy
+    has_many :metrics, class_name: 'Gamfora::Metric::Base', dependent: :destroy
 
     validates :name, presence: true
     validates :owner, presence: true

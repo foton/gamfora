@@ -1,0 +1,9 @@
+%h1= t("gamfora.metric.views.new.header", game_name: @game.name)
+= form_for(@metric, as: :metric, url: game_metrics_path(@metric.game), method: :post) do |f|
+  = render 'gamfora/shared/error_messages', obj: f.object
+  .field
+    = f.label :type
+    = f.select :type, ["Gamfora::Metric::Point"].collect {|m| [m,m]}
+
+  = render 'half_form', f: f
+= link_to t("gamfora.buttons.back"), game_metrics_path(@metric.game)

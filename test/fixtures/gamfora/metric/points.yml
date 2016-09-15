@@ -1,0 +1,5 @@
+money:
+  game: got
+  type: "Gamfora::Metric::Point"
+  name: "Money in pocket/chest/cave"
+  values_json: <%= { start: 0, min: 0, max: Gamfora::Metric::Point::UNLIMITED }.to_json.inspect %>

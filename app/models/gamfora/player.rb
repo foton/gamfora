@@ -6,7 +6,7 @@ module Gamfora
     default_scope { includes(:user) }
 
     validates :game, presence: true
-    validates :user, presence: true
+    validates :user, presence: true, uniqueness: { scope: [:game_id] , message: I18n.t("gamfora.player.errors.user_is_already_player_in_this_game")}
 
     
     def user_id=(v)

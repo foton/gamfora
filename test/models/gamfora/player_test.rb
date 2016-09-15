@@ -4,7 +4,7 @@ module Gamfora
   class PlayerTest < ActiveSupport::TestCase
 
     test "can be created" do
-      player=Gamfora::Player.new(game: gamfora_games(:got), user: users(:user3))
+      player=Gamfora::Player.new(game: gamfora_games(:got), user: users(:user4))
       assert player.save
     end
       
@@ -33,7 +33,10 @@ module Gamfora
     end  
 
     test "user cannot have more than one player for game" do
-      skip
+      #first time it is from fixtures
+      player_second_time=Gamfora::Player.new(game: gamfora_games(:got), user: users(:user3))
+      refute player_second_time.save
+      refute player_second_time.errors[:user].empty?
     end  
 
     test "can find players for user" do

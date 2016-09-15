@@ -1,7 +1,7 @@
 %table#game_players
   %thead
     %tr
-      %th Name
+      %th =t("gamfora.player.virtual_attributes.name")
       %th{:colspan => "2"}
       - if current_user_owner_of_game?(@game)
         = link_to t("gamfora.player.views.index.button_new"),  new_game_player_path(@game)

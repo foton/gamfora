@@ -1,10 +1,7 @@
 = form_for([player.game, player]) do |f|
-  = error_messages_for(player)
+  = render 'gamfora/shared/error_messages', obj: player
   .field
     = f.label :user_id
-    = f.number_field :user_id
-  .field
-    = f.label :game_id
-    = f.number_field :game_id
+    = f.collection_select :user_id, @users, :id, :name
   .actions
     = f.submit

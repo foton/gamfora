@@ -1,0 +1,15 @@
+%table#game_metrics
+  %thead
+    %tr
+      %th =Gamfora::Metric::Base.human_attribute_name(:name)
+      %th{:colspan => "2"}
+      - if current_user_owner_of_game?(@game)
+        = link_to t("gamfora.metric.views.index.button_new"),  new_game_metric_path(@game)
+  %tbody
+    - metrics.each do |metric|
+      %tr{:id => "metric_#{metric.id}"}
+        %td= metric.name
+        %td.show= link_to t("gamfora.buttons.show"), game_metric_path(@game, metric)
+        - if current_user_owner_of_game?(@game)
+          %td.edit= link_to t("gamfora.buttons.edit"), edit_game_metric_path(@game, metric)
+          %td.destroy= link_to t("gamfora.buttons.destroy"), game_metric_path(@game, metric), method: :delete, data: { confirm: t("gamfora.metric.views.destroy.question", name: metric.name, game_name: @game.name) }
