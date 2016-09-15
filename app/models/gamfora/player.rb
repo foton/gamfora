@@ -4,6 +4,7 @@ module Gamfora
     #for internal use, we name :player_person from main map as 'user', but it can be anything
     belongs_to :user ,class_name: Gamfora.player_class.to_s
     default_scope { includes(:user) }
+    has_many :scores
 
     validates :game, presence: true
     validates :user, presence: true, uniqueness: { scope: [:game_id] , message: I18n.t("gamfora.player.errors.user_is_already_player_in_this_game")}

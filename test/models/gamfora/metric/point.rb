@@ -20,7 +20,7 @@ module Gamfora
       test "can be created without MIN and MAX" do 
         mt=Gamfora::Metric::Point.new(game: @game, name: "Kingslayer points", start_value: 5)
         assert mt.save
-        assert_equal({start: 5, min: Gamfora::Metric::Point::UNLIMITED, max: Gamfora::Metric::Point::UNLIMITED}, mt.values)
+        assert_equal({start: 5, min: Gamfora::Metric::Base::UNLIMITED, max: Gamfora::Metric::Base::UNLIMITED}, mt.values)
       end
 
       test "require game" do 
@@ -53,6 +53,9 @@ module Gamfora
         assert mt.errors[:values].include?("Hodnota START je větší než hodnota MAX")
       end
 
+      test "on create build new scores for each player" do
+        skip
+      end  
     end  
   end
 end      

@@ -46,5 +46,18 @@ module Gamfora
       assert_equal(0,Gamfora::Player.all_for(users(:game_owner)).count ) 
     end 
 
+    test "can play an action" do
+      skip
+    end
+
+    test "have scores" do
+      skip
+    end
+
+    test "on create build new scores for each game metrics" do
+      skip
+    end  
+
+
   end
 end

@@ -92,3 +92,8 @@ cs:
         destroy:
           question: "Opravdu zrušit metriku '%{name}' (a s ní i navázené události, odměny a žebříčky?"
           success_message: "Metrika '%{name}' byla úspěšně smazána ze hry '%{game_name}'."
+    score:
+      errors:
+        value_is_lower_than_minimum: "Výsledná hodnota je menší než nejnižší metrikou povolená (%{min})"
+        value_is_bigger_than_maximum: "Výsledná hodnota je větší než nejvyšší metrikou povolená (%{max})"
+        player_already_have_score_for_this_metric: "Skóre pro tuto metriku již u hráče existuje"

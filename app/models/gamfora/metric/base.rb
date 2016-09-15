@@ -6,29 +6,24 @@ module Gamfora
       self.table_name= 'gamfora_metrics'
 
       belongs_to :game
+      has_many :scores 
 
       validates :game, presence: true
       validates :name, presence: true
+
+      UNLIMITED="unlimited"
 
       def values
         raise "Should be redefined in subclass to return available values"
       end  
 
-      #add value to current score, with corrections dependent on metrics
-      #returns new value(s) for score 
-      def add_value(v, score)
+      def is_countable?
+        raise "Should be redefined in subclass to return countability"
       end  
 
-      #set value for current score, with corrections dependent on metrics
-      #returns new value(s) for score 
-      def set_value(v)
+      def valid_value_change?(v)
+        raise "Should be redefined in subclass to check validity of value inside metric"
       end  
-
-      #substract value for current score, with corrections dependent on metrics
-      #returns new value(s) for score 
-      def substract_value(v)
-      end  
-
 
     end  
   end

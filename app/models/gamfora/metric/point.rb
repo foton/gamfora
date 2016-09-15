@@ -10,7 +10,13 @@ module Gamfora
       validate :validate_start_value_is_set
       validate :validate_start_value_between_min_and_max
 
-      UNLIMITED="unlimited"
+      def is_countable?
+        true
+      end  
+
+      def valid_value_change?(v)
+        v.is_a?(Numeric) #no check for min max, done at score
+      end  
 
       def values
         unless defined? @values
