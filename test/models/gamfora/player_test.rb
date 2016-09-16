@@ -55,8 +55,10 @@ module Gamfora
     end
 
     test "have scores" do
-      skip
-    end
+      player=Gamfora::Player.create!(game: @game, user: users(:user4))
+      assert_equal @game.metrics.pluck(:id).sort, player.scores.pluck(:metric_id).sort
+    end  
+    
 
     test "on create build new scores for each game metrics" do
       player=Gamfora::Player.new(game: @game, user: users(:user4))

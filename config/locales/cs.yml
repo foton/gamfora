@@ -97,3 +97,6 @@ cs:
         value_is_lower_than_minimum: "Výsledná hodnota je menší než nejnižší metrikou povolená (%{min})"
         value_is_bigger_than_maximum: "Výsledná hodnota je větší než nejvyšší metrikou povolená (%{max})"
         player_already_have_score_for_this_metric: "Skóre pro tuto metriku již u hráče existuje"
+    action:
+      errors:
+        key_is_already_used_in_this_game: "Akce s klíčem '%{key}' již ve hře '%{game_name}' existuje."

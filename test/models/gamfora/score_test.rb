@@ -78,8 +78,5 @@ module Gamfora
       assert_equal 5, score.value
     end  
 
-
-   
-
   end
 end      

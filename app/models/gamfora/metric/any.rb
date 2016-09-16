@@ -8,7 +8,7 @@ module Gamfora
       self.table_name= 'gamfora_metrics'
 
       belongs_to :game
-      has_many :scores, foreign_key: :metric_id  
+      has_many :scores, foreign_key: :metric_id , dependent: :destroy
 
       validates :game, presence: true
       validates :name, presence: true

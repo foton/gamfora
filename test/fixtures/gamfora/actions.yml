@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  game: one
+poisoned_noble:
+  key:  "poisoned_noble"
+  name: "I poisoned noble person"
+  game: got
 
-two:
-  name: MyString
-  game: two
+fight_in_battle:
+  key:  "fight_in_battle"
+  name: "I fight in battle. No matter how big or on which side."
+  game: got
