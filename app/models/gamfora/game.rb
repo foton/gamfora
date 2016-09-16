@@ -3,6 +3,7 @@ module Gamfora
     belongs_to :owner, class_name: Gamfora.game_owner_class.to_s
     has_many :players, dependent: :destroy
     has_many :metrics, class_name: 'Gamfora::Metric::Any', dependent: :destroy
+    has_many :point_metrics, class_name: 'Gamfora::Metric::Point'
     has_many :actions, dependent: :destroy
 
     validates :name, presence: true

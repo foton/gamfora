@@ -56,13 +56,13 @@ module Gamfora
       score=Gamfora::Score.new(player: @player, metric: mt)
            
       e=assert_raises(Gamfora::ValueIsNotAcceptableForMetricError) { score.add_value("a") }
-      assert_equal "Value is not acceptable for metric '#{mt.name}'", e.message
+      assert_equal "Hodnota změny 'a' neodpovídá  povoleným možnostem metriky '#{mt.name}'", e.message
   
       e=assert_raises(Gamfora::ValueIsNotAcceptableForMetricError) { score.substract_value(nil) }
-      assert_equal "Value is not acceptable for metric '#{mt.name}'", e.message
+      assert_equal "Hodnota změny '' neodpovídá  povoleným možnostem metriky '#{mt.name}'", e.message
 
       e=assert_raises(Gamfora::ValueIsNotAcceptableForMetricError) { score.set_value(mt) }
-      assert_equal "Value is not acceptable for metric '#{mt.name}'", e.message
+      assert_equal "Hodnota změny '#{mt}' neodpovídá  povoleným možnostem metriky '#{mt.name}'", e.message
     end  
 
     test "resets value on demand" do

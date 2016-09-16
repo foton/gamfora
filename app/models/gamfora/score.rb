@@ -1,6 +1,6 @@
 module Gamfora
 
-  class ValueIsNotAcceptableForMetricError < Gamfora::Error; end
+  require_dependency "gamfora/error.rb"
 
   class Score < ApplicationRecord
     belongs_to :player
@@ -95,7 +95,7 @@ module Gamfora
       end  
 
       def check_validity(v)
-        fail ValueIsNotAcceptableForMetricError.new("Value is not acceptable for metric '#{metric.name}'") unless metric.valid_value_change?(v)
+        fail Gamfora::ValueIsNotAcceptableForMetricError.new(v,metric) unless metric.valid_value_change?(v)
       end  
 
       def max_value

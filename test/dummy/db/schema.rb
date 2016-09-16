@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915143441) do
+ActiveRecord::Schema.define(version: 20160916093248) do
 
   create_table "gamfora_actions", force: :cascade do |t|
     t.string   "name"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 20160915143441) do
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_gamfora_players_on_game_id"
     t.index ["user_id"], name: "index_gamfora_players_on_user_id"
+  end
+
+  create_table "gamfora_rewards", force: :cascade do |t|
+    t.integer  "action_id"
+    t.integer  "metric_id"
+    t.integer  "count"
+    t.string   "text_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action_id"], name: "index_gamfora_rewards_on_action_id"
+    t.index ["metric_id"], name: "index_gamfora_rewards_on_metric_id"
   end
 
   create_table "gamfora_scores", force: :cascade do |t|
