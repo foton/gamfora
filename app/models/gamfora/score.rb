@@ -1,7 +1,10 @@
 module Gamfora
+
+  class ValueIsNotAcceptableForMetricError < Gamfora::Error; end
+
   class Score < ApplicationRecord
     belongs_to :player
-    belongs_to :metric, class_name: "Gamfora::Metric::Base"
+    belongs_to :metric, class_name: "Gamfora::Metric::Any"
     #default_scope { includes(:metric) }
 
     validate :check_range
@@ -23,7 +26,7 @@ module Gamfora
 
     #add value to current score, with corrections dependent on metrics
     #returns new value(s) for score 
-    #value is corrected against metric.max_value
+    #value is corrected against metric min_value-max_value
     def add_value(v)
       check_validity(v)
       if is_countable?
@@ -36,7 +39,7 @@ module Gamfora
 
     #set value for current score, with corrections dependent on metrics
     #returns new value(s) for score 
-    #raises  error when you try set value out of min..max range
+    #value is corrected against metric min_value-max_value
     def set_value(v)
       check_validity(v)
       self.value=v
@@ -45,7 +48,7 @@ module Gamfora
 
     #substract value for current score, with corrections dependent on metrics
     #returns new value(s) for score 
-    #value is corrected against metric.min_value
+    #value is corrected against metric min_value-max_value
     def substract_value(v)
       check_validity(v)
       if is_countable?
@@ -92,12 +95,12 @@ module Gamfora
       end  
 
       def check_validity(v)
-        raise "Value is not acceptable for metric #{metric.name}" unless metric.valid_value_change?(v)
+        fail ValueIsNotAcceptableForMetricError.new("Value is not acceptable for metric '#{metric.name}'") unless metric.valid_value_change?(v)
       end  
 
       def max_value
         unless defined?(@max_value)
-          if metric.respond_to?(:max_value) && ((maxv=metric.max_value) != Gamfora::Metric::Base::UNLIMITED)
+          if metric.respond_to?(:max_value) && ((maxv=metric.max_value) != Gamfora::Metric::Any::UNLIMITED)
             @max_value=maxv
           else
             @max_value=nil 
@@ -108,7 +111,7 @@ module Gamfora
 
       def min_value
         unless defined?(@min_value)
-          if metric.respond_to?(:min_value) && ((minv=metric.min_value) != Gamfora::Metric::Base::UNLIMITED)
+          if metric.respond_to?(:min_value) && ((minv=metric.min_value) != Gamfora::Metric::Any::UNLIMITED)
             @min_value=minv
           else
             @min_value=nil 

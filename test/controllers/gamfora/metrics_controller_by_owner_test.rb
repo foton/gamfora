@@ -56,11 +56,11 @@ module Gamfora
 
     test "owner: should create metric" do
       name="MyPoints"
-      assert_difference('Metric::Base.count',+1) do
+      assert_difference('Metric::Any.count',+1) do
         post game_metrics_url(@game), params: { metric: { game_id: @game.id, type: 'Gamfora::Metric::Point', name: name, start_value: 0 } }
       end
       
-      mts=Metric::Base.where(game: @game, name: name)
+      mts=Metric::Any.where(game: @game, name: name)
       assert_equal 1, mts.count
 
       assert_redirected_to game_metric_url(@game, mts.first )
@@ -113,7 +113,7 @@ module Gamfora
 
     test "owner: should update metric" do
       orig_metric=@metric.dup
-      assert_no_difference('Metric::Base.count') do
+      assert_no_difference('Metric::Any.count') do
         patch game_metric_url(@game, @metric), params: { metric: { game_id: @game.id, type: 'XPoint', name: "MyPoints2", start_value: 2 } }
       end
       
@@ -131,7 +131,7 @@ module Gamfora
     end
 
     test "owner: should destroy" do
-      assert_difference('Metric::Base.count',-1) do
+      assert_difference('Metric::Any.count',-1) do
         delete game_metric_url(@game, @metric)
       end
       assert_redirected_to game_metrics_url(@game)

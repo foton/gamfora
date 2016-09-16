@@ -1,7 +1,7 @@
 %table#game_metrics
   %thead
     %tr
-      %th =Gamfora::Metric::Base.human_attribute_name(:name)
+      %th =Gamfora::Metric::Any.human_attribute_name(:name)
       %th{:colspan => "2"}
       - if current_user_owner_of_game?(@game)
         = link_to t("gamfora.metric.views.index.button_new"),  new_game_metric_path(@game)

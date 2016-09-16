@@ -20,7 +20,7 @@ module Gamfora
       test "can be created without MIN and MAX" do 
         mt=Gamfora::Metric::Point.new(game: @game, name: "Kingslayer points", start_value: 5)
         assert mt.save
-        assert_equal({start: 5, min: Gamfora::Metric::Base::UNLIMITED, max: Gamfora::Metric::Base::UNLIMITED}, mt.values)
+        assert_equal({start: 5, min: Gamfora::Metric::Any::UNLIMITED, max: Gamfora::Metric::Any::UNLIMITED}, mt.values)
       end
 
       test "require game" do 
@@ -54,7 +54,12 @@ module Gamfora
       end
 
       test "on create build new scores for each player" do
-        skip
+        mt=Gamfora::Metric::Point.new(game: @game, name: "New name", start_value: 5, min_value: 0, max_value: 10 )
+        assert_difference("Score.count", @game.players.count) do
+          mt.save!
+        end  
+
+        assert_equal @game.players.count, mt.scores.count
       end  
     end  
   end

@@ -3,7 +3,7 @@ module Gamfora
     #basic metric for values which can be count (link to integers)
     #`game`, `name` and `start_value` is required
     #`min_value` and `max_value` are accepted
-    class Point < Gamfora::Metric::Base
+    class Point < Gamfora::Metric::Any
       before_validation :values_to_json
 
       validates :values_json, presence: true

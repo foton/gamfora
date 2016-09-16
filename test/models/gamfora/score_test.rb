@@ -45,14 +45,37 @@ module Gamfora
 
     test "only one score for player and metric" do
       mt=Gamfora::Metric::Point.create!(game: @game, name: "Arrows", start_value: 0 )
-      score=Gamfora::Score.create!(player: @player, metric: mt)
+      #scores were automagically created on Metric creation, so we have one for player already
       score2=Gamfora::Score.new(player: @player, metric: mt)
       refute score2.save
       assert_equal ["Skóre pro tuto metriku již u hráče existuje"], score2.errors[:player]
     end  
 
     test "using incorrect value raise an Error" do
-      skip
+      mt=Gamfora::Metric::Point.new(game: @game, name: "Arrows", start_value: 0, max_value: 10 )
+      score=Gamfora::Score.new(player: @player, metric: mt)
+           
+      e=assert_raises(Gamfora::ValueIsNotAcceptableForMetricError) { score.add_value("a") }
+      assert_equal "Value is not acceptable for metric '#{mt.name}'", e.message
+  
+      e=assert_raises(Gamfora::ValueIsNotAcceptableForMetricError) { score.substract_value(nil) }
+      assert_equal "Value is not acceptable for metric '#{mt.name}'", e.message
+
+      e=assert_raises(Gamfora::ValueIsNotAcceptableForMetricError) { score.set_value(mt) }
+      assert_equal "Value is not acceptable for metric '#{mt.name}'", e.message
+    end  
+
+    test "resets value on demand" do
+      mt=Gamfora::Metric::Point.new(game: @game, name: "Arrows", start_value: 5, min_value: 0 , max_value:20 )
+      score=Gamfora::Score.new(player: @player, metric: mt)
+      assert_equal 5, score.value
+      assert score.valid?
+
+      score.add_value(5)
+      assert_equal 10, score.value
+
+      score.reset_value
+      assert_equal 5, score.value
     end  
 
 
